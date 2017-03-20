@@ -1,0 +1,12 @@
+<!-- 院系用户-合作意向管理-二级导航 -->
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<div class="col-sm-3 col-md-2 sidebar">
+    <h4>系统设置</h4>
+    <ul class="nav nav-sidebar">
+        <li id="userList"><a href="admin/userList.jsp">查看用户信息</a></li>
+        <li id="addCollegeUser"><a href="admin/addCollegeUser.jsp">创建院系用户</a></li>
+        <li id="importStudent"><a href="admin/importStudent.jsp">批量导入学生用户</a></li>
+        <li id="setStatus"><a href="admin/setStatus.jsp">系统状态设置</a></li>
+    </ul>
+</div>

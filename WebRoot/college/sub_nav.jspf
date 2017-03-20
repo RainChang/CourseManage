@@ -1,0 +1,11 @@
+<!-- 院系用户-二级导航 -->
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<div class="col-sm-3 col-md-2 sidebar">
+     <h4>课程管理</h4>
+     <ul class="nav nav-sidebar">
+         <li id="courseList"><a href="college/courseList.jsp">课程列表</a></li>
+         <li id="addCourse"><a href="college/addCourse.jsp">添加/编辑课程</a></li>
+         <li id="viewRecords"><a href="college/viewRecords.jsp">查看选课名单</a></li>
+     </ul>
+</div>

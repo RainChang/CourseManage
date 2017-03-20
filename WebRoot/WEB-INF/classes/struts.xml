@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<constant name="struts.multipart.maxSize" value="104857600"/> 
+    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <constant name="struts.devMode" value="true" />
+    <constant name="struts.ognl.allowStaticMethodAccess" value="true"></constant>
+    
+
+    <!-- 注册 登录登录退出 &无需登录权限的基本设置 -->
+    <package name="default" namespace="" extends="struts-default">
+    	
+        <global-results>
+			<result type="redirect" name="error">/error.jsp</result>
+			<result name="login">/login.jsp</result>
+		</global-results>
+		
+		<!-- 登录 -->
+        <action name="login" class="zjicm.xmt130806228.action.LoginAction">
+            <result type="redirect" name="college">college/courseList.jsp</result>
+            <result type="redirect" name="student">student/courseList.jsp</result>
+            <result type="redirect" name="admin">admin/userList.jsp</result>
+        </action>
+        
+        <!-- 退出 -->
+        <action name="logout" class="zjicm.xmt130806228.action.LogoutAction">
+            <result type="redirect">/login.jsp</result>
+        </action>
+    </package>
+	<package name="common-ajax" namespace="/common" extends="json-default">
+    	<action name="getCourse" class="zjicm.xmt130806228.action.CourseGetAction">
+        	<result type="json">
+        		<param name="root">c</param>
+        	</result>
+        </action>
+        <action name="listCourse" class="zjicm.xmt130806228.action.CourseListAction">
+        	<result type="json">
+        		<param name="root">p</param>
+        	</result>
+        </action>
+    </package>
+	
+    <!-- 系统管理员 -->
+    <package name="admin" namespace="/admin" extends="default">
+    	<action name="addCollege" class="zjicm.xmt130806228.action.CollegeAddAction">
+        	<result type="redirect">userList.jsp</result>
+        	<result name="error">addCollegeUser.jsp</result>
+        </action>
+        <action name="importInfo" class="zjicm.xmt130806228.action.StudentImportAction">
+            <result name="success">info.jsp</result>
+        </action>
+    </package>
+    <package name="admin-ajax" namespace="/admin" extends="json-default">
+    	<action name="getUserList" class="zjicm.xmt130806228.action.UserListAction">
+        	<result type="json">
+        		<param name="root">p</param>
+        	</result>
+        </action>
+        <action name="resetUser" class="zjicm.xmt130806228.action.UserEditAction">
+        	<result type="json">
+        		<param name="root">result</param>
+        	</result>
+        </action>
+    </package>
+    <!-- 院系用户 -->
+    <package name="college" namespace="/college" extends="default">
+    	<action name="addCourse" class="zjicm.xmt130806228.action.CourseAddAction">
+        	<result type="redirect">courseList.jsp</result>
+        	<result name="error">addCourse.jsp</result>
+        </action>
+        <action name="listStudentRecord" class="zjicm.xmt130806228.action.StudentRecordListAction">
+        	<result>viewRecords.jsp</result>
+        </action>
+    </package>
+    <package name="college-ajax" namespace="/college" extends="json-default">
+    	<action name="deleteCourse" class="zjicm.xmt130806228.action.CourseDelAction">
+        	<result type="json">
+        		<param name="root">c</param>
+        	</result>
+        </action>
+    </package>
+    <!-- 学生用户 -->
+	<package name="student" namespace="/student" extends="default">
+    	<action name="listStudentRecord" class="zjicm.xmt130806228.action.CourseRecordListAction">
+        	<result>recordList.jsp</result>
+        </action>
+    </package>
+    <package name="student-ajax" namespace="/student" extends="json-default">
+    	<action name="selectCourse" class="zjicm.xmt130806228.action.RecordAddAction">
+        	<result type="json">
+        		<param name="root">result</param>
+        	</result>
+        </action>
+        <action name="cancelCourse" class="zjicm.xmt130806228.action.RecordDelAction">
+        	<result type="json">
+        		<param name="root">info</param>
+        	</result>
+        </action>
+        
+    </package>
+</struts>
